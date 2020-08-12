@@ -1,0 +1,5 @@
+include ':app', ':domain', ':data'
+include 'presenter'
+include 'domain'
+include 'data'
+rootProject.name='GithubRepositorySearchKotlin'

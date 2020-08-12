@@ -1,0 +1,182 @@
+project.ext {
+    minSdkVersion = 24
+    targetSdkVersion = 29
+    compileSdkVersion = 29
+    versionCode = 1
+    versionName = "0.0.1"
+
+    appcompat = '1.1.0-rc01'
+    recyclerView = '1.1.0-beta03'
+    fragmentKtx = '1.3.0-alpha06'
+    activityKtx = '1.1.0-alpha02'
+    lifecycle = '2.2.0-alpha03'
+    constraintLayout = '1.1.3'
+
+    kotlin = '1.3.21'
+
+    moshi = '1.8.0'
+    moshiConverter = '2.5.0'
+    retrofit = '2.6.0'
+    okHttp = '3.12.1'
+    okHttpLogginInterceptor = '3.12.1'
+
+    picasso = '2.71828'
+
+    timber = '4.7.1'
+
+    dagger = '2.26'
+
+    navigationVersion = '2.2.0'
+
+    junit = '4.12'
+    mockk = '1.9.3'
+
+    threetenabp = '1.2.2'
+
+    appDependencies = [
+            testImplementation       : [
+                    'junit:junit:' + junit,
+                    'io.mockk:mockk:' + mockk,
+            ],
+            androidTestImplementation: [
+
+            ],
+            implementation           : [
+                    project(':presenter'),
+                    fileTree(dir: 'libs', include: ['*.jar']),
+                    'androidx.appcompat:appcompat:' + appcompat,
+                    'androidx.appcompat:appcompat-resources:' + appcompat,
+                    'androidx.lifecycle:lifecycle-viewmodel:' + lifecycle,
+                    'androidx.lifecycle:lifecycle-extensions:' + lifecycle,
+                    'androidx.recyclerview:recyclerview:' + recyclerView,
+                    'androidx.constraintlayout:constraintlayout:' + constraintLayout,
+                    'androidx.activity:activity-ktx:' + activityKtx,
+                    'androidx.fragment:fragment-ktx:' + fragmentKtx,
+                    'com.squareup.okhttp3:okhttp:' + okHttp,
+                    'com.squareup.okhttp3:logging-interceptor:' + okHttpLogginInterceptor,
+                    'com.squareup.moshi:moshi-kotlin:' + moshi,
+                    'com.squareup.moshi:moshi-adapters:' + moshi,
+                    'com.squareup.retrofit2:converter-moshi:' + moshiConverter,
+                    'org.jetbrains.kotlin:kotlin-stdlib-jdk7:' + kotlin,
+                    'org.jetbrains.kotlin:kotlin-stdlib:' + kotlin,
+                    'org.jetbrains.kotlin:kotlin-reflect:' + kotlin,
+                    'com.squareup.picasso:picasso:' + picasso,
+                    'androidx.navigation:navigation-fragment-ktx:' + navigationVersion,
+                    'androidx.navigation:navigation-ui-ktx:' + navigationVersion,
+                    'com.jakewharton.timber:timber:' + timber,
+                    'com.google.dagger:dagger:' + dagger,
+                    'com.google.dagger:dagger-android-support:' + dagger,
+                    'com.jakewharton.threetenabp:threetenabp:' + threetenabp,
+            ],
+            api                      : [
+            ],
+            kapt                     : [
+                    'com.squareup.moshi:moshi-kotlin-codegen:' + moshi,
+                    'com.google.dagger:dagger-compiler:' + dagger,
+                    'com.google.dagger:dagger-android-processor:' + dagger,
+            ],
+            compileOnly              : [
+
+            ]
+    ]
+
+    presenterDependencies = [
+            testImplementation       : [
+                    'junit:junit:' + junit,
+                    'io.mockk:mockk:' + mockk,
+            ],
+            androidTestImplementation: [
+
+            ],
+            implementation           : [
+                    fileTree(dir: 'libs', include: ['*.jar']),
+                    'org.jetbrains.kotlin:kotlin-stdlib-jdk7:' + kotlin,
+                    'org.jetbrains.kotlin:kotlin-stdlib:' + kotlin,
+                    'androidx.lifecycle:lifecycle-viewmodel:' + lifecycle,
+                    'com.squareup.moshi:moshi-kotlin:' + moshi,
+                    'com.squareup.moshi:moshi-adapters:' + moshi,
+                    'com.squareup.retrofit2:converter-moshi:' + moshiConverter,
+                    'com.squareup.retrofit2:retrofit:' + retrofit,
+                    'com.squareup.okhttp3:okhttp:' + okHttp,
+                    'com.squareup.okhttp3:logging-interceptor:' + okHttpLogginInterceptor,
+                    'com.jakewharton.timber:timber:' + timber,
+                    'com.google.dagger:dagger:' + dagger,
+                    'com.jakewharton.threetenabp:threetenabp:' + threetenabp,
+            ],
+            api                      : [
+                    project(':domain'),
+            ],
+            kapt                     : [
+                    'com.google.dagger:dagger-compiler:' + dagger,
+            ],
+            compileOnly              : [
+
+            ]
+    ]
+
+    domainDependencies = [
+            testImplementation       : [
+                    'junit:junit:' + junit,
+                    'io.mockk:mockk:' + mockk,
+            ],
+            androidTestImplementation: [
+
+            ],
+            implementation           : [
+                    fileTree(dir: 'libs', include: ['*.jar']),
+                    'org.jetbrains.kotlin:kotlin-stdlib-jdk7:' + kotlin,
+                    'org.jetbrains.kotlin:kotlin-stdlib:' + kotlin,
+                    'com.squareup.moshi:moshi-kotlin:' + moshi,
+                    'com.squareup.moshi:moshi-adapters:' + moshi,
+                    'com.squareup.retrofit2:converter-moshi:' + moshiConverter,
+                    'com.squareup.retrofit2:retrofit:' + retrofit,
+                    'com.squareup.okhttp3:okhttp:' + okHttp,
+                    'com.squareup.okhttp3:logging-interceptor:' + okHttpLogginInterceptor,
+                    'com.jakewharton.timber:timber:' + timber,
+                    'com.google.dagger:dagger:' + dagger,
+                    'com.jakewharton.threetenabp:threetenabp:' + threetenabp,
+            ],
+            api                      : [
+                    project(':data'),
+            ],
+            kapt                     : [
+                    'com.google.dagger:dagger-compiler:' + dagger,
+            ],
+            compileOnly              : [
+
+            ]
+    ]
+
+    dataDependencies = [
+            testImplementation       : [
+                    'junit:junit:' + junit,
+                    'io.mockk:mockk:' + mockk,
+            ],
+            androidTestImplementation: [
+
+            ],
+            implementation           : [
+                    fileTree(dir: 'libs', include: ['*.jar']),
+                    'org.jetbrains.kotlin:kotlin-stdlib-jdk7:' + kotlin,
+                    'org.jetbrains.kotlin:kotlin-stdlib:' + kotlin,
+                    'com.squareup.moshi:moshi-kotlin:' + moshi,
+                    'com.squareup.moshi:moshi-adapters:' + moshi,
+                    'com.squareup.retrofit2:converter-moshi:' + moshiConverter,
+                    'com.squareup.retrofit2:retrofit:' + retrofit,
+                    'com.squareup.okhttp3:okhttp:' + okHttp,
+                    'com.squareup.okhttp3:logging-interceptor:' + okHttpLogginInterceptor,
+                    'com.jakewharton.timber:timber:' + timber,
+                    'com.google.dagger:dagger:' + dagger,
+                    'com.jakewharton.threetenabp:threetenabp:' + threetenabp,
+            ],
+            api                      : [
+            ],
+            kapt                     : [
+                    'com.squareup.moshi:moshi-kotlin-codegen:' + moshi,
+                    'com.google.dagger:dagger-compiler:' + dagger,
+            ],
+            compileOnly              : [
+
+            ]
+    ]
+}
