@@ -1,3 +1,9 @@
 <resources>
+    <string name="lorem_ipsum">Lorem ipsum</string>
     <string name="app_name">GithubRepositorySearchKotlin</string>
+
+    <string name="repository_private">Private</string>
+    <string name="repository_public">Public</string>
+    <string name="repository_main">Main</string>
+    <string name="repository_fork">fork</string>
 </resources>

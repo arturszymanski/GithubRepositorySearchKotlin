@@ -17,8 +17,13 @@ project.ext {
     moshi = '1.8.0'
     moshiConverter = '2.5.0'
     retrofit = '2.6.0'
+    retrofitRxJavaAdapter = '2.5.0'
     okHttp = '3.12.1'
     okHttpLogginInterceptor = '3.12.1'
+
+    rxJava = '2.2.6'
+    rxKotlin = '2.3.0'
+    rxAndroid = '2.1.0'
 
     picasso = '2.71828'
 
@@ -93,6 +98,9 @@ project.ext {
                     'org.jetbrains.kotlin:kotlin-stdlib-jdk7:' + kotlin,
                     'org.jetbrains.kotlin:kotlin-stdlib:' + kotlin,
                     'androidx.lifecycle:lifecycle-viewmodel:' + lifecycle,
+                    'io.reactivex.rxjava2:rxkotlin:' + rxKotlin,
+                    'io.reactivex.rxjava2:rxandroid:' + rxAndroid,
+                    'io.reactivex.rxjava2:rxjava:' + rxJava,
                     'com.squareup.moshi:moshi-kotlin:' + moshi,
                     'com.squareup.moshi:moshi-adapters:' + moshi,
                     'com.squareup.retrofit2:converter-moshi:' + moshiConverter,
@@ -126,6 +134,9 @@ project.ext {
                     fileTree(dir: 'libs', include: ['*.jar']),
                     'org.jetbrains.kotlin:kotlin-stdlib-jdk7:' + kotlin,
                     'org.jetbrains.kotlin:kotlin-stdlib:' + kotlin,
+                    'io.reactivex.rxjava2:rxkotlin:' + rxKotlin,
+                    'io.reactivex.rxjava2:rxandroid:' + rxAndroid,
+                    'io.reactivex.rxjava2:rxjava:' + rxJava,
                     'com.squareup.moshi:moshi-kotlin:' + moshi,
                     'com.squareup.moshi:moshi-adapters:' + moshi,
                     'com.squareup.retrofit2:converter-moshi:' + moshiConverter,
@@ -159,10 +170,14 @@ project.ext {
                     fileTree(dir: 'libs', include: ['*.jar']),
                     'org.jetbrains.kotlin:kotlin-stdlib-jdk7:' + kotlin,
                     'org.jetbrains.kotlin:kotlin-stdlib:' + kotlin,
+                    'io.reactivex.rxjava2:rxkotlin:' + rxKotlin,
+                    'io.reactivex.rxjava2:rxandroid:' + rxAndroid,
+                    'io.reactivex.rxjava2:rxjava:' + rxJava,
                     'com.squareup.moshi:moshi-kotlin:' + moshi,
                     'com.squareup.moshi:moshi-adapters:' + moshi,
                     'com.squareup.retrofit2:converter-moshi:' + moshiConverter,
                     'com.squareup.retrofit2:retrofit:' + retrofit,
+                    'com.squareup.retrofit2:adapter-rxjava2:' + retrofitRxJavaAdapter,
                     'com.squareup.okhttp3:okhttp:' + okHttp,
                     'com.squareup.okhttp3:logging-interceptor:' + okHttpLogginInterceptor,
                     'com.jakewharton.timber:timber:' + timber,

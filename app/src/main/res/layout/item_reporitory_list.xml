@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_big_half"
+    android:elevation="@dimen/card_elevation"
+    app:cardCornerRadius="@dimen/card_corner_radius">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_medium">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/endGuideLine"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/arrowImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_medium_half"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/endGuideLine"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/vector_icon_chevron_right" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/nameLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textSize="@dimen/text_size_big"
+            app:layout_constraintEnd_toStartOf="@id/endGuideLine"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/lorem_ipsum" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/ownerLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium_half"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textSize="@dimen/text_size_medium"
+            app:layout_constraintEnd_toStartOf="@id/endGuideLine"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nameLabel"
+            tools:text="@string/lorem_ipsum" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineCenter"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.45" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/isPrivateImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium_half"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/isPrivateLabel"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ownerLabel"
+            tools:src="@drawable/vector_icon_lock_open" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/isPrivateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small_half"
+            android:ellipsize="end"
+            android:textSize="@dimen/text_size_medium"
+            app:layout_constraintBottom_toBottomOf="@id/isPrivateImage"
+            app:layout_constraintEnd_toStartOf="@id/guidelineCenter"
+            app:layout_constraintStart_toEndOf="@id/isPrivateImage"
+            app:layout_constraintTop_toTopOf="@id/isPrivateImage"
+            tools:text="@string/lorem_ipsum" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/isForkImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium_half"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/isForkLabel"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/guidelineCenter"
+            app:layout_constraintTop_toBottomOf="@id/ownerLabel"
+            tools:src="@drawable/vector_icon_split" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/isForkLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small_half"
+            android:ellipsize="end"
+            android:textSize="@dimen/text_size_medium"
+            app:layout_constraintBottom_toBottomOf="@id/isForkImage"
+            app:layout_constraintEnd_toStartOf="@id/endGuideLine"
+            app:layout_constraintStart_toEndOf="@id/isForkImage"
+            app:layout_constraintTop_toTopOf="@id/isForkImage"
+            tools:text="@string/lorem_ipsum" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
