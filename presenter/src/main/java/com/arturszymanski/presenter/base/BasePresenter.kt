@@ -2,6 +2,7 @@ package com.arturszymanski.presenter.base
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
+import io.reactivex.disposables.CompositeDisposable
 import java.util.*
 
 /**
@@ -18,6 +19,11 @@ abstract class BasePresenter<V> : ViewModel() where V : BaseView {
      * Internal flag that adds possibility to remember if presenter is bound for first time or presenter restore its state.
      */
     var isFirstBind = true
+    /**
+     * Used for RX all disposables added there will be cleared once presenter will not be needed anymore. Allow to avoid
+     * memory leaks.
+     */
+    protected var compositeDisposable: CompositeDisposable = CompositeDisposable()
     /**
      * Queue that keeps all requests to the view, when presenter is unbound.
      */
@@ -94,5 +100,6 @@ abstract class BasePresenter<V> : ViewModel() where V : BaseView {
      * unavailable in this moment.
      */
     open fun finish() {
+        compositeDisposable.dispose()
     }
 }
