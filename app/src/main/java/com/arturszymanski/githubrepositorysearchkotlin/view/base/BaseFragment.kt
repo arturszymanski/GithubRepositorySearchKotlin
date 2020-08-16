@@ -23,4 +23,14 @@ abstract class BaseFragment : Fragment(), BaseView {
      * Method that invoke inject dependencies in right moment
      */
     abstract fun injectDependencies()
+
+    //region BaseView
+    override fun showProgress() {
+
+    }
+
+    override fun hideProgress() {
+
+    }
+    //endregion
 }

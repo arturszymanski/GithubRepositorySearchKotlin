@@ -5,4 +5,7 @@ package com.arturszymanski.presenter.base
  * and its view. There should be added only methods that are very widely used like Network Error.
  */
 interface BaseView {
+    fun showProgress()
+
+    fun hideProgress()
 }

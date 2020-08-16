@@ -20,6 +20,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        buildTypes.each {
+            it.buildConfigField 'String', 'API_PATH', '"https://api.github.com/"'
+            it.buildConfigField 'int', 'DEFAULT_PAGE_SIZE', '20'
+        }
     }
 
 }

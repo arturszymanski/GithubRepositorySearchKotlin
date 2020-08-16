@@ -29,12 +29,12 @@ class RepositoryListAdapter @Inject constructor(
     }
 
     fun updateData(data: List<Repository>) {
-        this.data = data
-        diffCallback
+        val diffResult = diffCallback
             .calculate(
                 oldData = this.data,
                 newData = data
             )
-            .dispatchUpdatesTo(this)
+        this.data = data
+        diffResult.dispatchUpdatesTo(this)
     }
 }
