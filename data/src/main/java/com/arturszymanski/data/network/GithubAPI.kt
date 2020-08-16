@@ -14,5 +14,5 @@ interface GithubAPI {
         @Query("page") page: Int,
         @Query("per_page") pageSize: Int = BuildConfig.DEFAULT_PAGE_SIZE,
         @Query("q") searchQuery: String
-        ): Single<PageDTO<RepositoryDTO>>
+    ): Single<PageDTO<RepositoryDTO>>
 }

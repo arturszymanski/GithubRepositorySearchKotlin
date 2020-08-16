@@ -71,6 +71,7 @@ project.ext {
                     'com.google.dagger:dagger:' + dagger,
                     'com.google.dagger:dagger-android-support:' + dagger,
                     'com.jakewharton.threetenabp:threetenabp:' + threetenabp,
+                    'com.squareup.retrofit2:converter-scalars:' + retrofit,
             ],
             api                      : [
             ],
@@ -182,6 +183,7 @@ project.ext {
                     'com.jakewharton.timber:timber:' + timber,
                     'com.google.dagger:dagger:' + dagger,
                     'com.jakewharton.threetenabp:threetenabp:' + threetenabp,
+                    'com.squareup.retrofit2:converter-scalars:' + retrofit,
             ],
             api                      : [
             ],
