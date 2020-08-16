@@ -1,6 +1,7 @@
 package com.arturszymanski.githubrepositorysearchkotlin.di
 
 import com.arturszymanski.githubrepositorysearchkotlin.view.reporitoryList.RepositoryListFragment
+import com.arturszymanski.githubrepositorysearchkotlin.view.repositoryDetails.RepositoryDetailsFragment
 import com.arturszymanski.githubrepositorysearchkotlin.view.splash.SplashFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -13,4 +14,7 @@ abstract class FragmentsModule {
 
     @ContributesAndroidInjector
     abstract fun bindRepositoryListFragment(): RepositoryListFragment
+
+    @ContributesAndroidInjector
+    abstract fun bindRepositoryDetailsFragment(): RepositoryDetailsFragment
 }

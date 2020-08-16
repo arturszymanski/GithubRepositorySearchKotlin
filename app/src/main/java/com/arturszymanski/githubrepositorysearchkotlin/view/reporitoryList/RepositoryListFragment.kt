@@ -2,6 +2,8 @@ package com.arturszymanski.githubrepositorysearchkotlin.view.reporitoryList
 
 import android.os.Bundle
 import android.view.*
+import androidx.annotation.VisibleForTesting
+import androidx.appcompat.app.AppCompatActivity
 import com.arturszymanski.domain.entity.Repository
 import com.arturszymanski.githubrepositorysearchkotlin.R
 import com.arturszymanski.githubrepositorysearchkotlin.view.base.BasePresenterFragment
@@ -15,6 +17,10 @@ import kotlinx.android.synthetic.main.fragment_repository_list.*
 import javax.inject.Inject
 import javax.inject.Provider
 import androidx.appcompat.widget.SearchView
+import androidx.navigation.fragment.findNavController
+import com.arturszymanski.githubrepositorysearchkotlin.view.base.BackAware
+import com.arturszymanski.presenter.di.REPOSITORY_LIST_PRESENTER_FACTORY
+import javax.inject.Named
 
 
 class RepositoryListFragment :
@@ -23,7 +29,8 @@ class RepositoryListFragment :
             RepositoryListView
             >(),
     RepositoryListView,
-    PaginationActionsListener {
+    PaginationActionsListener,
+    BackAware {
 
     @Inject
     lateinit var paginationScrollListener: PaginationScrollListener
@@ -31,9 +38,11 @@ class RepositoryListFragment :
     @Inject
     lateinit var adapter: RepositoryListAdapter
 
+    @Named(REPOSITORY_LIST_PRESENTER_FACTORY)
     @Inject
     lateinit var presenterFactoryProvider: Provider<PresenterFactory>
 
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     val repositoryListItemInteractions =
         object : RepositoryListItemInteractions {
             override fun itemSelected(position: Int, repository: Repository) {
@@ -44,6 +53,7 @@ class RepositoryListFragment :
             }
         }
 
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     val onSearchQueryTextChangeListener = object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(query: String?): Boolean {
             presenter.searchQueryConfirmed(query ?: "")
@@ -56,6 +66,7 @@ class RepositoryListFragment :
         }
     }
 
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     val onSearchCloseListener = SearchView.OnCloseListener {
         presenter.searchQueryConfirmed("")
         false
@@ -65,6 +76,9 @@ class RepositoryListFragment :
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as? AppCompatActivity)
+            ?.supportActionBar
+            ?.title = getString(R.string.app_name)
         setHasOptionsMenu(true)
         return inflater.inflate(
             R.layout.fragment_repository_list,
@@ -106,6 +120,22 @@ class RepositoryListFragment :
     override fun hideProgress() {
         super.hideProgress()
         paginationScrollListener.isDataLoading = false
+    }
+
+    override fun displayRepositoryDetails(repository: Repository) {
+        val toRepositoryDetails =
+            RepositoryListFragmentDirections.actionRepositoryListFragmentToRepositoryDetailsFragment(repository)
+        findNavController().navigate(toRepositoryDetails)
+    }
+
+    override fun displayPrevious() {
+        findNavController().popBackStack()
+    }
+    //endregion
+
+    //region BackAware
+    override fun onBackPressed() {
+        presenter.displayPreviousSelected()
     }
     //endregion
 

@@ -4,6 +4,7 @@ import android.content.Context
 import com.arturszymanski.data.di.ApiModule
 import com.arturszymanski.domain.di.DataSourceModule
 import com.arturszymanski.githubrepositorysearchkotlin.GithubRepositorySearchKotlinApplication
+import com.arturszymanski.presenter.di.PresenterModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
