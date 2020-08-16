@@ -1,9 +1,7 @@
 package com.arturszymanski.githubrepositorysearchkotlin.view.reporitoryList
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.arturszymanski.domain.entity.Repository
 import com.arturszymanski.githubrepositorysearchkotlin.R
 import com.arturszymanski.githubrepositorysearchkotlin.view.base.BasePresenterFragment
@@ -16,6 +14,8 @@ import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_repository_list.*
 import javax.inject.Inject
 import javax.inject.Provider
+import androidx.appcompat.widget.SearchView
+
 
 class RepositoryListFragment :
     BasePresenterFragment<
@@ -44,14 +44,34 @@ class RepositoryListFragment :
             }
         }
 
+    val onSearchQueryTextChangeListener = object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String?): Boolean {
+            presenter.searchQueryConfirmed(query ?: "")
+            return false
+        }
+
+        override fun onQueryTextChange(newText: String?): Boolean {
+            presenter.searchQueryChanged(newText ?: "")
+            return false
+        }
+    }
+
+    val onSearchCloseListener = SearchView.OnCloseListener {
+        presenter.searchQueryConfirmed("")
+        false
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(
-        R.layout.fragment_repository_list,
-        container,
-        false
-    )
+    ): View? {
+        setHasOptionsMenu(true)
+        return inflater.inflate(
+            R.layout.fragment_repository_list,
+            container,
+            false
+        )
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,6 +81,16 @@ class RepositoryListFragment :
 
         paginationScrollListener.action = this
         repositoryList.addOnScrollListener(paginationScrollListener)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu, menu)
+
+        val myActionMenuItem = menu.findItem(R.id.action_search)
+        with(myActionMenuItem.actionView as SearchView) {
+            setOnQueryTextListener(onSearchQueryTextChangeListener)
+            setOnCloseListener(onSearchCloseListener)
+        }
     }
 
     //region View
