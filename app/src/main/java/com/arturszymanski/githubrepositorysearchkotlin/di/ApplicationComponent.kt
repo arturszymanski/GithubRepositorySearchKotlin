@@ -1,6 +1,8 @@
 package com.arturszymanski.githubrepositorysearchkotlin.di
 
 import android.content.Context
+import com.arturszymanski.data.di.ApiModule
+import com.arturszymanski.domain.di.DataSourceModule
 import com.arturszymanski.githubrepositorysearchkotlin.GithubRepositorySearchKotlinApplication
 import dagger.BindsInstance
 import dagger.Component
@@ -14,6 +16,8 @@ import javax.inject.Singleton
         (ActivitiesModule::class),
         (FragmentsModule::class),
         (UiModule::class),
+        (ApiModule::class),
+        (DataSourceModule::class),
         (PresenterModule::class)
     ]
 )

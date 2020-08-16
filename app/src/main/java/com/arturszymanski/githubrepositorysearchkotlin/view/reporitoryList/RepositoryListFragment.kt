@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import com.arturszymanski.domain.entity.Repository
 import com.arturszymanski.githubrepositorysearchkotlin.R
 import com.arturszymanski.githubrepositorysearchkotlin.view.base.BasePresenterFragment
+import com.arturszymanski.githubrepositorysearchkotlin.view.util.PaginationActionsListener
+import com.arturszymanski.githubrepositorysearchkotlin.view.util.PaginationScrollListener
 import com.arturszymanski.presenter.base.PresenterFactory
 import com.arturszymanski.presenter.repositoryList.RepositoryListPresenter
 import com.arturszymanski.presenter.repositoryList.RepositoryListView
@@ -20,7 +22,11 @@ class RepositoryListFragment :
             RepositoryListPresenter,
             RepositoryListView
             >(),
-    RepositoryListView {
+    RepositoryListView,
+    PaginationActionsListener {
+
+    @Inject
+    lateinit var paginationScrollListener: PaginationScrollListener
 
     @Inject
     lateinit var adapter: RepositoryListAdapter
@@ -52,11 +58,30 @@ class RepositoryListFragment :
 
         adapter.itemInteractions = repositoryListItemInteractions
         repositoryList.adapter = adapter
+
+        paginationScrollListener.action = this
+        repositoryList.addOnScrollListener(paginationScrollListener)
     }
 
     //region View
     override fun displayData(data: List<Repository>) {
         adapter.updateData(data)
+    }
+
+    override fun showProgress() {
+        paginationScrollListener.isDataLoading = true
+        super.showProgress()
+    }
+
+    override fun hideProgress() {
+        super.hideProgress()
+        paginationScrollListener.isDataLoading = false
+    }
+    //endregion
+
+    //region PaginationActionsListener
+    override fun loadMore() {
+        presenter.loadMoreSelected()
     }
     //endregion
 

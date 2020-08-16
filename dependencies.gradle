@@ -65,6 +65,7 @@ project.ext {
                     'org.jetbrains.kotlin:kotlin-stdlib-jdk7:' + kotlin,
                     'org.jetbrains.kotlin:kotlin-stdlib:' + kotlin,
                     'org.jetbrains.kotlin:kotlin-reflect:' + kotlin,
+                    'com.squareup.retrofit2:adapter-rxjava2:' + retrofitRxJavaAdapter,
                     'com.squareup.picasso:picasso:' + picasso,
                     'androidx.navigation:navigation-fragment-ktx:' + navigationVersion,
                     'androidx.navigation:navigation-ui-ktx:' + navigationVersion,
