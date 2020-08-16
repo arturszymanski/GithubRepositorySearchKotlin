@@ -25,13 +25,26 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/margin_medium_half"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/vector_icon_chevron_right"
+            app:layout_constraintBottom_toTopOf="@+id/separator"
             app:layout_constraintDimensionRatio="1.0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@id/endGuideLine"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/vector_icon_chevron_right" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/nameHintLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="@string/repository_title_hint"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toStartOf="@id/endGuideLine"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/nameLabel"
@@ -42,21 +55,44 @@
             android:textSize="@dimen/text_size_big"
             app:layout_constraintEnd_toStartOf="@id/endGuideLine"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameHintLabel"
             tools:text="@string/lorem_ipsum" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/ownerLabel"
+            android:id="@+id/ownerHintLabel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium_half"
             android:ellipsize="end"
             android:lines="1"
+            android:text="@string/repository_owner_hint"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toStartOf="@id/endGuideLine"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nameLabel" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/ownerLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
             android:textSize="@dimen/text_size_medium"
             app:layout_constraintEnd_toStartOf="@id/endGuideLine"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/nameLabel"
+            app:layout_constraintTop_toBottomOf="@id/ownerHintLabel"
             tools:text="@string/lorem_ipsum" />
+
+        <View
+            android:id="@+id/separator"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_medium_half"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ownerLabel" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineCenter"
@@ -74,7 +110,7 @@
             app:layout_constraintEnd_toStartOf="@+id/isPrivateLabel"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ownerLabel"
+            app:layout_constraintTop_toBottomOf="@id/separator"
             tools:src="@drawable/vector_icon_lock_open" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -99,7 +135,7 @@
             app:layout_constraintEnd_toStartOf="@+id/isForkLabel"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@id/guidelineCenter"
-            app:layout_constraintTop_toBottomOf="@id/ownerLabel"
+            app:layout_constraintTop_toBottomOf="@id/separator"
             tools:src="@drawable/vector_icon_split" />
 
         <androidx.appcompat.widget.AppCompatTextView
