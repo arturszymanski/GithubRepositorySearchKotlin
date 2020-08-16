@@ -1,6 +1,7 @@
 package com.arturszymanski.domain.datasource
 
 import com.arturszymanski.data.network.GithubAPI
+import com.arturszymanski.data.network.GithubReadmeAPI
 import com.arturszymanski.domain.entity.Page
 import com.arturszymanski.domain.entity.Repository
 import com.arturszymanski.domain.entity.SearchQuery
@@ -12,6 +13,7 @@ import javax.inject.Inject
 
 class RepositoryDataSourceImpl @Inject constructor(
     private val githubAPI: GithubAPI,
+    private val githubReadmeAPI: GithubReadmeAPI,
     private val pageMapper: PageMapper,
     private val repositoryMapper: RepositoryMapper
 ) : RepositoryDataSource {
@@ -32,4 +34,14 @@ class RepositoryDataSourceImpl @Inject constructor(
                         repositoryMapper::toDomain
                     )
             }
+
+    override fun fetchRepositoryDefaultReadme(
+        ownerLogin: String,
+        repositoryName: String
+    ): Single<String> =
+        githubReadmeAPI
+            .fetchRepositoryDefaultReadme(
+                ownerLogin = ownerLogin,
+                repositoryName = repositoryName
+            )
 }

@@ -8,4 +8,6 @@ interface RepositoryDetailsView : BaseView {
     fun displayRepository(repository: Repository)
 
     fun displayPrevious()
+
+    fun displayReadme(readmeContent: String)
 }

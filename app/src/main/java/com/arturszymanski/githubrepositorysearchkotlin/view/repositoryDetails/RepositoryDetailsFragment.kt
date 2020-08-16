@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -33,6 +34,7 @@ class RepositoryDetailsFragment :
     @Inject
     lateinit var presenterFactoryProvider: Provider<PresenterFactory>
 
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     val args: RepositoryDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -58,6 +60,22 @@ class RepositoryDetailsFragment :
 
     override fun displayPrevious() {
         findNavController().popBackStack()
+    }
+
+    override fun displayReadme(readmeContent: String) {
+        if (readmeContent.isNotEmpty()) {
+            readmeContainer.visibility = View.VISIBLE
+            readmeWebView
+                .loadDataWithBaseURL(
+                    null,
+                    readmeContent,
+                    "text/html",
+                    "utf-8",
+                    null
+                )
+        } else {
+            readmeContainer.visibility = View.GONE
+        }
     }
     //endregion
 
