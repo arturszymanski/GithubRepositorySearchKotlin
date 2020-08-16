@@ -39,10 +39,9 @@ class RepositoryListPresenter @Inject constructor(
     override fun onViewRestoreState() {
         super.onViewRestoreState()
 
-        if(::lastPage.isInitialized) {
+        if (::lastPage.isInitialized) {
             present { it.displayData(prepareRepositoryListToDisplay()) }
-        }
-        else {
+        } else {
             fetchRepositoryList(
                 page = currentPage,
                 searchQuery = searchQuery,
@@ -54,7 +53,9 @@ class RepositoryListPresenter @Inject constructor(
     //region UI
     fun itemSelected(position: Int, repository: Repository) {
         Timber.i("Item with position: $position, and value: $repository selected.")
-        //TODO part of next task
+        present {
+            it.displayRepositoryDetails(repository)
+        }
     }
 
     fun searchQueryChanged(searchQueryText: String) {
@@ -84,6 +85,10 @@ class RepositoryListPresenter @Inject constructor(
             searchQuery = searchQuery,
             operationType = RepositoryListFetchType.LOAD_MORE
         )
+    }
+
+    fun displayPreviousSelected() {
+        present { it.displayPrevious() }
     }
     //endregion
 
@@ -119,7 +124,7 @@ class RepositoryListPresenter @Inject constructor(
         operationType: RepositoryListFetchType
     ) {
         Timber.i("Fetch repository success with value: $data")
-        when(operationType) {
+        when (operationType) {
             RepositoryListFetchType.LOAD_MORE -> loadMore(data = data)
             RepositoryListFetchType.SEARCH -> search(data = data)
             RepositoryListFetchType.DEFAULT -> loadMore(data = data)
@@ -165,21 +170,23 @@ class RepositoryListPresenter @Inject constructor(
     //region DelayedTaskUseCase
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     var delayedSearchDisposable: Disposable? = null
+
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun delaySplashScreen(searchQueryText: String) {
         Timber.i("Trying to delay search for: $searchQueryText")
         delayedSearchDisposable
             ?.let {
-                if(it.isDisposed.not()) {
+                if (it.isDisposed.not()) {
                     it.dispose()
                 }
             }
 
-        delayedSearchDisposable = delayedTaskUseCase.execute(SEARCH_DELAY_MILISECONDS, TimeUnit.MILLISECONDS)
-            .subscribe(
-                { delaySplashScreenSuccess(searchQueryText) },
-                this::delaySplashScreenFailed
-            )
+        delayedSearchDisposable =
+            delayedTaskUseCase.execute(SEARCH_DELAY_MILISECONDS, TimeUnit.MILLISECONDS)
+                .subscribe(
+                    { delaySplashScreenSuccess(searchQueryText) },
+                    this::delaySplashScreenFailed
+                )
     }
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
@@ -190,14 +197,14 @@ class RepositoryListPresenter @Inject constructor(
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun delaySplashScreenFailed(throwable: Throwable) {
-        Timber.e(throwable,"Failed to delay search")
+        Timber.e(throwable, "Failed to delay search")
     }
     //endregion
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun searchWithoutDelayIfNotSearched(searchQueryText: String) {
         Timber.i("Trying to search without delay for: $searchQueryText")
-        if(searchQueryText == searchQuery.name) {
+        if (searchQueryText == searchQuery.name) {
             return
         }
 

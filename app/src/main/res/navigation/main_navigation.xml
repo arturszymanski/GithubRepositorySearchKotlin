@@ -15,6 +15,20 @@
         android:id="@+id/repositoryListFragment"
         android:name="com.arturszymanski.githubrepositorysearchkotlin.view.reporitoryList.RepositoryListFragment"
         android:label="RepositoryListFragment"
-        tools:layout="@layout/fragment_repository_list"/>
+        tools:layout="@layout/fragment_repository_list">
+        <action
+            android:id="@+id/action_repositoryListFragment_to_repositoryDetailsFragment"
+            app:destination="@id/repositoryDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/repositoryDetailsFragment"
+        android:name="com.arturszymanski.githubrepositorysearchkotlin.view.repositoryDetails.RepositoryDetailsFragment"
+        android:label="RepositoryDetailsFragment"
+        tools:layout="@layout/fragment_repository_details">
+        <argument
+            android:name="repository"
+            app:argType="com.arturszymanski.domain.entity.Repository"/>
+    </fragment>
 
 </navigation>
