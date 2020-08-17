@@ -63,6 +63,9 @@ class RepositoryDetailsPresenter @Inject constructor(
         repositoryName: String
     ) {
         Timber.i("Trying to fetch default readme that belongs to: $ownerLogin and comes from repository: $repositoryName")
+        present {
+            it.showProgress()
+        }
         fetchRepositoryDefaultReadmeUseCase
             .execute(
                 ownerLogin = ownerLogin,
@@ -81,12 +84,16 @@ class RepositoryDetailsPresenter @Inject constructor(
         this.readmeContent = readmeContent
         present {
             it.displayReadme(readmeContent)
+            it.hideProgress()
         }
     }
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun fetchRepositoryDefaultReadmeFailed(throwable: Throwable) {
         Timber.e(throwable, "Failed to fetch repository default content")
+        present {
+            it.hideProgress()
+        }
     }
     //endregion
 }

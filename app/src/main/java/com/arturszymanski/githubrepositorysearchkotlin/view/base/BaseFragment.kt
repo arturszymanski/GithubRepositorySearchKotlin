@@ -26,11 +26,11 @@ abstract class BaseFragment : Fragment(), BaseView {
 
     //region BaseView
     override fun showProgress() {
-
+        (activity as? BaseView)?.showProgress()
     }
 
     override fun hideProgress() {
-
+        (activity as? BaseView)?.hideProgress()
     }
     //endregion
 }
