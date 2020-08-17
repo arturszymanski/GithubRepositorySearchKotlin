@@ -11,4 +11,9 @@
     <string name="repository_title_hint">Title:</string>
     <string name="repository_owner_hint">Owner:</string>
     <string name="search_hint">Search</string>
+
+    <string name="readme_not_found">Readme content\ncould not be found.</string>
+
+    <string name="error_general">Something went wrong, please try again later.</string>
+    <string name="error_api_requests_limit">Api calls limit exceeded, please try again later.</string>
 </resources>

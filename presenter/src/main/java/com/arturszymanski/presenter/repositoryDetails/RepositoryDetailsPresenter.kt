@@ -2,6 +2,9 @@ package com.arturszymanski.presenter.repositoryDetails
 
 import androidx.annotation.VisibleForTesting
 import com.arturszymanski.domain.entity.Repository
+import com.arturszymanski.domain.entity.error.ForbidenException
+import com.arturszymanski.domain.entity.error.NotFoundException
+import com.arturszymanski.domain.entity.error.ServerException
 import com.arturszymanski.domain.usecase.FetchRepositoryDefaultReadmeUseCase
 import com.arturszymanski.presenter.base.BasePresenter
 import io.reactivex.rxkotlin.addTo
@@ -93,6 +96,12 @@ class RepositoryDetailsPresenter @Inject constructor(
         Timber.e(throwable, "Failed to fetch repository default content")
         present {
             it.hideProgress()
+        }
+
+        when(throwable) {
+            is NotFoundException -> present { it.displayReadmeNotFoundError() }
+            is ForbidenException -> present { it.displayApiLimitError() }
+            else -> present { it.displayGeneralError() }
         }
     }
     //endregion

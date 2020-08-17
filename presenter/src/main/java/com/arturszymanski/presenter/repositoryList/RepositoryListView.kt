@@ -10,4 +10,6 @@ interface RepositoryListView: BaseView {
     fun displayRepositoryDetails(repository: Repository)
 
     fun displayPrevious()
+
+    fun displayApiLimitError()
 }

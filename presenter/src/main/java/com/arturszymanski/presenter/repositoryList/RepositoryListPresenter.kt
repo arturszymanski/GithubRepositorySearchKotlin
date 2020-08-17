@@ -4,6 +4,8 @@ import androidx.annotation.VisibleForTesting
 import com.arturszymanski.domain.entity.Page
 import com.arturszymanski.domain.entity.Repository
 import com.arturszymanski.domain.entity.SearchQuery
+import com.arturszymanski.domain.entity.error.ForbidenException
+import com.arturszymanski.domain.entity.error.NotFoundException
 import com.arturszymanski.domain.usecase.DelayedTaskUseCase
 import com.arturszymanski.domain.usecase.FetchRepositoryListUseCase
 import com.arturszymanski.presenter.base.BasePresenter
@@ -163,6 +165,11 @@ class RepositoryListPresenter @Inject constructor(
         Timber.e(throwable, "Failed to fetch repository list")
         present {
             it.hideProgress()
+        }
+
+        when(throwable) {
+            is ForbidenException -> present { it.displayApiLimitError() }
+            else -> present { it.displayGeneralError() }
         }
     }
     //endregion

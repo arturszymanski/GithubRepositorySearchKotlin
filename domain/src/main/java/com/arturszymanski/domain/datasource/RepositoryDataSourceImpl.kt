@@ -5,6 +5,7 @@ import com.arturszymanski.data.network.GithubReadmeAPI
 import com.arturszymanski.domain.entity.Page
 import com.arturszymanski.domain.entity.Repository
 import com.arturszymanski.domain.entity.SearchQuery
+import com.arturszymanski.domain.mapper.HttpErrorMapper
 import com.arturszymanski.domain.mapper.PageMapper
 import com.arturszymanski.domain.mapper.RepositoryMapper
 import com.arturszymanski.domain.mapper.toDTO
@@ -14,6 +15,7 @@ import javax.inject.Inject
 class RepositoryDataSourceImpl @Inject constructor(
     private val githubAPI: GithubAPI,
     private val githubReadmeAPI: GithubReadmeAPI,
+    private val httpErrorMapper: HttpErrorMapper,
     private val pageMapper: PageMapper,
     private val repositoryMapper: RepositoryMapper
 ) : RepositoryDataSource {
@@ -27,6 +29,7 @@ class RepositoryDataSourceImpl @Inject constructor(
                 page = page,
                 searchQuery = searchQuery.toDTO()
             )
+            .onErrorResumeNext { httpErrorMapper.mapSingle(it) }
             .map {
                 pageMapper
                     .map(
@@ -44,4 +47,5 @@ class RepositoryDataSourceImpl @Inject constructor(
                 ownerLogin = ownerLogin,
                 repositoryName = repositoryName
             )
+            .onErrorResumeNext { httpErrorMapper.mapSingle(it) }
 }
