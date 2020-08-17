@@ -2,10 +2,10 @@ package com.arturszymanski.githubrepositorysearchkotlin.view
 
 import android.os.Bundle
 import android.view.View
-import android.view.Window
 import androidx.navigation.findNavController
 import com.arturszymanski.githubrepositorysearchkotlin.R
 import com.arturszymanski.githubrepositorysearchkotlin.view.base.BaseActivity
+import com.google.android.material.snackbar.Snackbar
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -28,6 +28,14 @@ class MainActivity : BaseActivity() {
     override fun hideProgress() {
         progressIndicator.visibility = View.GONE
     }
+
+    override fun displayGeneralError() =
+        Snackbar
+            .make(
+                mainContainer,
+                R.string.error_general,
+                Snackbar.LENGTH_SHORT)
+            .show()
     //endregion
 
     //region Base

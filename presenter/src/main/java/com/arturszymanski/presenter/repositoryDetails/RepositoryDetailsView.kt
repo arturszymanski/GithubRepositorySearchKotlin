@@ -10,4 +10,8 @@ interface RepositoryDetailsView : BaseView {
     fun displayPrevious()
 
     fun displayReadme(readmeContent: String)
+
+    fun displayApiLimitError()
+
+    fun displayReadmeNotFoundError()
 }

@@ -32,5 +32,9 @@ abstract class BaseFragment : Fragment(), BaseView {
     override fun hideProgress() {
         (activity as? BaseView)?.hideProgress()
     }
+
+    override fun displayGeneralError() {
+        (activity as? BaseView)?.displayGeneralError()
+    }
     //endregion
 }

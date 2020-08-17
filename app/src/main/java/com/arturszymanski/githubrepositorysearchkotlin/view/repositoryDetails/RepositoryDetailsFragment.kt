@@ -16,6 +16,7 @@ import com.arturszymanski.presenter.base.PresenterFactory
 import com.arturszymanski.presenter.di.REPOSITORY_DETAILS_PRESENTER_FACTORY
 import com.arturszymanski.presenter.repositoryDetails.RepositoryDetailsPresenter
 import com.arturszymanski.presenter.repositoryDetails.RepositoryDetailsView
+import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_repository_details.*
 import javax.inject.Inject
@@ -63,19 +64,27 @@ class RepositoryDetailsFragment :
     }
 
     override fun displayReadme(readmeContent: String) {
-        if (readmeContent.isNotEmpty()) {
-            readmeContainer.visibility = View.VISIBLE
-            readmeWebView
-                .loadDataWithBaseURL(
-                    null,
-                    readmeContent,
-                    "text/html",
-                    "utf-8",
-                    null
-                )
-        } else {
-            readmeContainer.visibility = View.GONE
-        }
+        noReadmeLabel.visibility = View.GONE
+        readmeWebView
+            .loadDataWithBaseURL(
+                null,
+                readmeContent,
+                "text/html",
+                "utf-8",
+                null
+            )
+    }
+
+    override fun displayApiLimitError() =
+        Snackbar
+            .make(
+                mainContainer,
+                R.string.error_api_requests_limit,
+                Snackbar.LENGTH_SHORT)
+            .show()
+
+    override fun displayReadmeNotFoundError() {
+        noReadmeLabel.visibility = View.VISIBLE
     }
     //endregion
 

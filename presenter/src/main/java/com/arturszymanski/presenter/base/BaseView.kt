@@ -8,4 +8,6 @@ interface BaseView {
     fun showProgress()
 
     fun hideProgress()
+
+    fun displayGeneralError()
 }

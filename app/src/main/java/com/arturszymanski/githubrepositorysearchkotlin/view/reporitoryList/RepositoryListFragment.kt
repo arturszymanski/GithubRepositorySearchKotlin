@@ -20,6 +20,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import com.arturszymanski.githubrepositorysearchkotlin.view.base.BackAware
 import com.arturszymanski.presenter.di.REPOSITORY_LIST_PRESENTER_FACTORY
+import com.google.android.material.snackbar.Snackbar
 import javax.inject.Named
 
 
@@ -131,6 +132,14 @@ class RepositoryListFragment :
     override fun displayPrevious() {
         findNavController().popBackStack()
     }
+
+    override fun displayApiLimitError() =
+        Snackbar
+            .make(
+                mainContainer,
+                R.string.error_api_requests_limit,
+                Snackbar.LENGTH_SHORT)
+            .show()
     //endregion
 
     //region BackAware
