@@ -22,16 +22,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         }
     }
 
-    //region BaseView
-    override fun showProgress() {
-
-    }
-
-    override fun hideProgress() {
-
-    }
-    //endregion
-
     /**
      * Method that invoke inject dependencies in right moment
      */
