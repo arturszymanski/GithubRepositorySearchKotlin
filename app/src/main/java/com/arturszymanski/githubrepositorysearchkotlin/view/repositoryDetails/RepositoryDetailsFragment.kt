@@ -59,9 +59,8 @@ class RepositoryDetailsFragment :
         issuesLabel.text = repository.openIssuesCount.toString()
     }
 
-    override fun displayPrevious() {
-        findNavController().popBackStack()
-    }
+    override fun displayPrevious() =
+        popBackstackOrFinishActivity()
 
     override fun displayReadme(readmeContent: String) {
         noReadmeLabel.visibility = View.GONE
