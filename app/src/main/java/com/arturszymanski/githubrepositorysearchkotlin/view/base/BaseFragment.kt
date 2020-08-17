@@ -37,4 +37,10 @@ abstract class BaseFragment : Fragment(), BaseView {
         (activity as? BaseView)?.displayGeneralError()
     }
     //endregion
+
+    fun Fragment.popBackstackOrFinishActivity() {
+        if (!findNavController().popBackStack() && activity is BaseActivity) {
+            activity?.finishAfterTransition()
+        }
+    }
 }

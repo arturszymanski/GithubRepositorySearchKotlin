@@ -129,9 +129,8 @@ class RepositoryListFragment :
         findNavController().navigate(toRepositoryDetails)
     }
 
-    override fun displayPrevious() {
-        findNavController().popBackStack()
-    }
+    override fun displayPrevious() =
+        popBackstackOrFinishActivity()
 
     override fun displayApiLimitError() =
         Snackbar
